@@ -1,0 +1,13 @@
+{
+  "name": "anvi-birthday-card",
+  "version": "1.0.0",
+  "description": "A beautiful birthday card website for Anvi",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build process needed for static site' && exit 0",
+    "start": "echo 'Open index.html in browser'"
+  },
+  "keywords": ["birthday", "card", "static", "html"],
+  "author": "",
+  "license": "MIT"
+}
