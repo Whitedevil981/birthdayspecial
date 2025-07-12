@@ -63,40 +63,40 @@
 <h2>🏱 Click to Open Your Birthday Gift!</h2>
 
 <!-- First Gift Box -->
-<img src="gift-box-closed.png" alt="Gift Box" class="gift-box" id="firstBox" onclick="openFirstBox()">
+<div class="gift-box" id="firstBox" onclick="openFirstBox()" style="width: 150px; height: 150px; background: linear-gradient(45deg, #ff69b4, #ff1493); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: white; cursor: pointer; transition: transform 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">🎁</div>
 
 <!-- Kinder Joy Reveal -->
 <div id="firstReveal" class="hidden">
-  <img src="gift-box-open.png" class="gift-box" style="cursor: default;">
-  <img src="kinder-joy.png" alt="Kinder Joy" class="reveal-img">
+  <div class="gift-box" style="width: 150px; height: 150px; background: linear-gradient(45deg, #ddd, #bbb); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #666; cursor: default; box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin: 0 auto;">📦</div>
+  <div class="reveal-img" style="width: 120px; height: 120px; background: linear-gradient(45deg, #ffd700, #ffb347); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; color: white; margin: 15px auto; animation: riseOut 1s ease forwards; opacity: 0;">🍫</div>
   <p class="message">Ohh sorry sorry... 😅 galti se galat box de diya.<br>Ye wala sahi box hai 👇</p>
 
   <!-- Second Gift Box -->
-  <img src="gift-box-closed.png" alt="Real Gift Box" class="gift-box" id="secondBox" onclick="openSecondBox()">
+  <div class="gift-box" id="secondBox" onclick="openSecondBox()" style="width: 150px; height: 150px; background: linear-gradient(45deg, #ff69b4, #ff1493); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: white; cursor: pointer; transition: transform 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin: 20px auto;">🎁</div>
 </div>
 
 <!-- Real Gift Reveal -->
 <div id="secondReveal" class="hidden">
-  <img src="gift-box-open.png" class="gift-box" style="cursor: default;">
-  <img src="real-gift.png" alt="Real Surprise" class="reveal-img">
+  <div class="gift-box" style="width: 150px; height: 150px; background: linear-gradient(45deg, #ddd, #bbb); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #666; cursor: default; box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin: 0 auto;">📦</div>
+  <div class="reveal-img" style="width: 120px; height: 120px; background: linear-gradient(45deg, #ff69b4, #ff1493); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 36px; color: white; margin: 15px auto; animation: riseOut 1s ease forwards; opacity: 0;">💖</div>
   <p class="message">Ye raha tumhara asli gift! 🎉💖<br>Hope it brought a smile to your face 😄</p>
 </div>
 
 <!-- Sound Effects -->
-<audio id="soundEffect1" src="box-open.mp3" preload="auto"></audio>
-<audio id="soundEffect2" src="surprise.mp3" preload="auto"></audio>
+<audio id="soundEffect1" preload="auto"></audio>
+<audio id="soundEffect2" preload="auto"></audio>
 
 <script>
   function openFirstBox() {
     document.getElementById("firstBox").classList.add("hidden");
     document.getElementById("firstReveal").classList.remove("hidden");
-    document.getElementById("soundEffect1").play();
+    // Sound effect removed for compatibility
   }
 
   function openSecondBox() {
     document.getElementById("secondBox").classList.add("hidden");
     document.getElementById("secondReveal").classList.remove("hidden");
-    document.getElementById("soundEffect2").play();
+    // Sound effect removed for compatibility
   }
 </script>
 

@@ -107,9 +107,7 @@
 
 <!-- Music Controls -->
 <div class="music-control" onclick="toggleMusic()">🔊</div>
-<audio id="bdayMusic" autoplay loop>
-  <source src="happy.mp3" type="audio/mpeg">
-</audio>
+<audio id="bdayMusic" loop></audio>
 
 <script>
   // Placeholder for next page function
@@ -120,7 +118,7 @@
 
   // Music toggle
   const music = document.getElementById("bdayMusic");
-  let isPlaying = true;
+  let isPlaying = false;
 
   function toggleMusic() {
     const icon = document.querySelector(".music-control");
@@ -128,10 +126,10 @@
       music.pause();
       icon.innerText = "🔇";
     } else {
-      music.play();
+      // Music functionality disabled for deployment compatibility
       icon.innerText = "🔊";
     }
-    isPlaying = !isPlaying;
+    // isPlaying = !isPlaying;
   }
 </script>
 
