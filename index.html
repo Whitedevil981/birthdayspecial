@@ -44,7 +44,7 @@
 
     .candle {
       position: absolute;
-      top: 40px;
+      top: -35px;
       left: 50%;
       transform: translateX(-50%);
       width: 10px;
@@ -111,16 +111,6 @@
       }
     }
 
-    .sparkle {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      display: none;
-      z-index: 3;
-    }
-
     .fireworks {
       position: fixed;
       top: 0;
@@ -174,7 +164,6 @@
     <img src="cake.png" alt="Birthday Cake" class="cake-image" />
     <div class="candle">
       <div class="flame" id="flame"></div>
-      <img src="sparkle.gif" class="sparkle" id="sparkle" />
     </div>
   </div>
 
@@ -188,14 +177,10 @@
   <script>
     function blowFlame() {
       const flame = document.getElementById("flame");
-      const sparkle = document.getElementById("sparkle");
       const wishText = document.getElementById("wishText");
 
       // Animate flame blowing out
       flame.style.animation = "blowOut 1s forwards";
-
-      // Show sparkles
-      sparkle.style.display = "block";
 
       // Add smoke
       const smoke = document.createElement("div");
@@ -215,7 +200,7 @@
         }, 50);
       }, 1200);
 
-      // Show button after typing
+      // Show "Make a Wish" button
       setTimeout(() => {
         document.getElementById("wishBtn").style.display = "inline-block";
       }, 3000);
@@ -227,7 +212,7 @@
         document.body.style.opacity = 0;
       }, 1800);
       setTimeout(() => {
-        window.location.href = "page1.html"; // Your next page
+        window.location.href = "page1.html"; // Change to your next page
       }, 2800);
     }
   </script>

@@ -27,6 +27,7 @@
       align-items: center;
       position: relative;
       text-align: center;
+      z-index: 1;
     }
 
     .cover h1 {
@@ -51,17 +52,28 @@
       cursor: pointer;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
       transition: background 0.3s;
+      z-index: 2;
     }
 
     .start-btn:hover {
       background-color: #ff1493;
     }
 
+    .confetti {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
     .confetti span {
       position: absolute;
       width: 10px;
       height: 10px;
-      background: #fff;
+      background: white;
       border-radius: 50%;
       opacity: 0.8;
       animation: fall 4s infinite ease-in-out;
@@ -70,9 +82,11 @@
     @keyframes fall {
       0% {
         transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
       }
       100% {
-        transform: translateY(600px) rotate(360deg);
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
       }
     }
 
@@ -85,6 +99,7 @@
       border-radius: 50%;
       cursor: pointer;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 3;
     }
   </style>
 </head>
@@ -94,15 +109,31 @@
   <h1>🎉 Happy Birthday Anvi! 🎉</h1>
   <p>This greeting is just the beginning of your magical day!</p>
   <button class="start-btn" onclick="nextPage()">Open Card</button>
+</div>
 
-  <!-- Confetti Elements -->
-  <div class="confetti">
-    <span style="left: 10%; animation-delay: 0s;"></span>
-    <span style="left: 30%; animation-delay: 0.5s;"></span>
-    <span style="left: 50%; animation-delay: 1s;"></span>
-    <span style="left: 70%; animation-delay: 1.5s;"></span>
-    <span style="left: 90%; animation-delay: 0.2s;"></span>
-  </div>
+<!-- Confetti Elements -->
+<div class="confetti">
+  <!-- Generate 20 sparkles with different delays and positions -->
+  <span style="left: 5%; animation-delay: 0s;"></span>
+  <span style="left: 10%; animation-delay: 0.5s;"></span>
+  <span style="left: 15%; animation-delay: 1s;"></span>
+  <span style="left: 20%; animation-delay: 1.5s;"></span>
+  <span style="left: 25%; animation-delay: 2s;"></span>
+  <span style="left: 30%; animation-delay: 2.5s;"></span>
+  <span style="left: 35%; animation-delay: 3s;"></span>
+  <span style="left: 40%; animation-delay: 0.3s;"></span>
+  <span style="left: 45%; animation-delay: 0.8s;"></span>
+  <span style="left: 50%; animation-delay: 1.2s;"></span>
+  <span style="left: 55%; animation-delay: 1.8s;"></span>
+  <span style="left: 60%; animation-delay: 2.1s;"></span>
+  <span style="left: 65%; animation-delay: 2.6s;"></span>
+  <span style="left: 70%; animation-delay: 3s;"></span>
+  <span style="left: 75%; animation-delay: 0.6s;"></span>
+  <span style="left: 80%; animation-delay: 1.4s;"></span>
+  <span style="left: 85%; animation-delay: 1.9s;"></span>
+  <span style="left: 90%; animation-delay: 2.3s;"></span>
+  <span style="left: 95%; animation-delay: 2.9s;"></span>
+  <span style="left: 98%; animation-delay: 0.9s;"></span>
 </div>
 
 <!-- Music Controls -->
@@ -112,10 +143,8 @@
 </audio>
 
 <script>
-  // Placeholder for next page function
   function nextPage() {
-    window.location.href = "page2.html";
-    // In full site: window.location.href = "page2.html";
+    window.location.href = "page2.html"; // Change to your actual next page
   }
 
   // Music toggle
@@ -133,6 +162,13 @@
     }
     isPlaying = !isPlaying;
   }
+
+  // Autoplay helper for browsers that block autoplay
+  window.addEventListener('click', () => {
+    if (music.paused) {
+      music.play().catch(() => {});
+    }
+  }, { once: true });
 </script>
 
 </body>
