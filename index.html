@@ -2,46 +2,138 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Happy Birthday Anvi</title>
+  <title>Let's Cut the Cake!</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      font-family: 'Comic Sans MS', cursive;
-      background: linear-gradient(135deg, #ffb6c1, #e6e6fa);
-      animation: gradientMove 6s infinite alternate;
-      overflow: hidden;
-    }
-
-    @keyframes gradientMove {
-      0% { background: linear-gradient(135deg, #ffb6c1, #e6e6fa); }
-      100% { background: linear-gradient(135deg, #ff69b4, #dda0dd); }
-    }
-
-    .cover {
-      width: 100%;
-      height: 100%;
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom, #ffe4e1, #ffb6c1);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      position: relative;
+      font-family: 'Comic Sans MS', cursive;
       text-align: center;
+      overflow: hidden;
+      transition: opacity 1s ease;
+      position: relative;
     }
 
-    .cover h1 {
-      font-size: 36px;
-      color: #ff1493;
+    h1 {
+      font-size: 32px;
+      color: #d6336c;
       margin-bottom: 10px;
     }
 
-    .cover p {
+    p {
       font-size: 18px;
-      color: #444;
-      margin-bottom: 30px;
+      color: #555;
+      margin-bottom: 20px;
     }
 
-    .start-btn {
+    .cake-container {
+      position: relative;
+      width: 200px;
+      height: 250px;
+    }
+
+    .cake-image {
+      width: 100%;
+      height: auto;
+    }
+
+    .candle {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 40px;
+      background: #fff;
+      border-radius: 2px;
+      z-index: 2;
+    }
+
+    .flame {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 20px;
+      background: radial-gradient(circle, yellow 40%, orange 60%);
+      border-radius: 50%;
+      animation: flicker 0.3s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); opacity: 1; }
+      to { transform: translateX(-50%) scale(1.2); opacity: 0.9; }
+    }
+
+    @keyframes blowOut {
+      0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateX(-55%) scale(0.5);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateX(-60%) scale(0);
+        opacity: 0;
+      }
+    }
+
+    .smoke {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      background: gray;
+      border-radius: 50%;
+      opacity: 0;
+      animation: smokeRise 2s forwards;
+      pointer-events: none;
+    }
+
+    @keyframes smokeRise {
+      0% {
+        opacity: 0.7;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50px) scale(2);
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      display: none;
+      z-index: 3;
+    }
+
+    .fireworks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+      display: none;
+    }
+
+    .btn {
+      margin-top: 25px;
       padding: 12px 24px;
       font-size: 16px;
       background-color: #ff69b4;
@@ -53,87 +145,92 @@
       transition: background 0.3s;
     }
 
-    .start-btn:hover {
-      background-color: #ff1493;
+    .btn:hover {
+      background-color: #d6336c;
     }
 
-    .confetti span {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: fall 4s infinite ease-in-out;
+    #wishBtn {
+      display: none;
     }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(-100px) rotate(0deg);
-      }
-      100% {
-        transform: translateY(600px) rotate(360deg);
-      }
-    }
-
-    .music-control {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: white;
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    #wishText {
+      font-size: 20px;
+      color: #d6336c;
+      margin-top: 20px;
+      min-height: 40px;
     }
   </style>
 </head>
 <body>
 
-<div class="cover">
-  <h1>🎉 Happy Birthday Anvi! 🎉</h1>
-  <p>This greeting is just the beginning of your magical day!</p>
-  <button class="start-btn" onclick="nextPage()">Open Card</button>
+  <h1>🎂 Hey, Let's Cut the Cake!</h1>
+  <p>But first, blow the candles and make a wish...</p>
 
-  <!-- Confetti Elements -->
-  <div class="confetti">
-    <span style="left: 10%; animation-delay: 0s;"></span>
-    <span style="left: 30%; animation-delay: 0.5s;"></span>
-    <span style="left: 50%; animation-delay: 1s;"></span>
-    <span style="left: 70%; animation-delay: 1.5s;"></span>
-    <span style="left: 90%; animation-delay: 0.2s;"></span>
+  <!-- Typing Wish -->
+  <p id="wishText"></p>
+
+  <!-- Cake + Candle -->
+  <div class="cake-container">
+    <img src="cake.png" alt="Birthday Cake" class="cake-image" />
+    <div class="candle">
+      <div class="flame" id="flame"></div>
+      <img src="sparkle.gif" class="sparkle" id="sparkle" />
+    </div>
   </div>
-</div>
 
-<!-- Music Controls -->
-<div class="music-control" onclick="toggleMusic()">🔊</div>
-<audio id="bdayMusic" autoplay loop>
-  <source src="happy.mp3" type="audio/mpeg">
-</audio>
+  <!-- Buttons -->
+  <button class="btn" onclick="blowFlame()">Blow the Candle</button>
+  <button class="btn" id="wishBtn" onclick="goToGreeting()">Make a Wish 🎁</button>
 
-<script>
-  // Placeholder for next page function
-  function nextPage() {
-    window.location.href = "page2.html";
-    // In full site: window.location.href = "page2.html";
-  }
+  <!-- Fireworks -->
+  <img src="fireworks.gif" id="fireworks" class="fireworks" alt="Fireworks" />
 
-  // Music toggle
-  const music = document.getElementById("bdayMusic");
-  let isPlaying = true;
+  <script>
+    function blowFlame() {
+      const flame = document.getElementById("flame");
+      const sparkle = document.getElementById("sparkle");
+      const wishText = document.getElementById("wishText");
 
-  function toggleMusic() {
-    const icon = document.querySelector(".music-control");
-    if (isPlaying) {
-      music.pause();
-      icon.innerText = "🔇";
-    } else {
-      music.play();
-      icon.innerText = "🔊";
+      // Animate flame blowing out
+      flame.style.animation = "blowOut 1s forwards";
+
+      // Show sparkles
+      sparkle.style.display = "block";
+
+      // Add smoke
+      const smoke = document.createElement("div");
+      smoke.className = "smoke";
+      flame.parentElement.appendChild(smoke);
+
+      // Typing wish
+      const message = "🎈 May your day be filled with joy, love & endless smiles! 🎂";
+      let i = 0;
+      wishText.innerHTML = "";
+
+      setTimeout(() => {
+        const typeInterval = setInterval(() => {
+          wishText.innerHTML += message.charAt(i);
+          i++;
+          if (i >= message.length) clearInterval(typeInterval);
+        }, 50);
+      }, 1200);
+
+      // Show button after typing
+      setTimeout(() => {
+        document.getElementById("wishBtn").style.display = "inline-block";
+      }, 3000);
     }
-    isPlaying = !isPlaying;
-  }
-</script>
+
+    function goToGreeting() {
+      document.getElementById("fireworks").style.display = "block";
+      setTimeout(() => {
+        document.body.style.opacity = 0;
+      }, 1800);
+      setTimeout(() => {
+        window.location.href = "page1.html"; // Your next page
+      }, 2800);
+    }
+  </script>
 
 </body>
 </html>
