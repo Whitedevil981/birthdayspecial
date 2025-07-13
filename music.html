@@ -2,138 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Happy Birthday Anvi</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Comic Sans MS', cursive;
-      background: linear-gradient(135deg, #ffb6c1, #e6e6fa);
-      overflow: hidden;
-    }
-    section {
-      height: 100vh;
-      width: 100%;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 20px;
-    }
-    section.active {
-      display: flex;
-    }
-    h1 {
-      font-size: 36px;
-      color: #ff1493;
-    }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 20px;
-      background-color: #ff69b4;
-      color: white;
-      cursor: pointer;
-    }
-    #music-control {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 100;
-      background: white;
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-  </style>
+  <title>Music Player</title>
 </head>
-<body>
+<body style="margin:0; padding:0; background:black; display:flex; justify-content:center; align-items:center; height:100vh; color:white;">
+  <p>🎵 Playing birthday song...</p>
 
-<!-- Music Controls -->
-<div id="music-control" onclick="toggleMusic()">🔊</div>
-<audio id="bgMusic" loop autoplay>
-  <source src="happy.mp3" type="audio/mpeg">
-</audio>
+  <audio id="bgMusic" autoplay loop>
+    <source src="happy.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-<!-- Page 1 -->
-<section id="page1" class="active">
-  <h1>🎉 Welcome Anvi!</h1>
-  <p>Let's start your magical birthday journey!</p>
-  <button onclick="nextPage()">Next ➡️</button>
-</section>
-
-<!-- Page 2 -->
-<section id="page2">
-  <h1>🎂 Time to Cut the Cake!</h1>
-  <p>But first, blow the candle and make a wish...</p>
-  <button onclick="nextPage()">Next ➡️</button>
-</section>
-
-<!-- Page 3 -->
-<section id="page3">
-  <h1>💌 Here's a Surprise Message!</h1>
-  <p>You're loved more than words can say.</p>
-  <button onclick="nextPage()">Next ➡️</button>
-</section>
-
-<!-- Page 4 -->
-<section id="page4">
-  <h1>🎁 Gifts Await You</h1>
-  <p>Hope you enjoy your surprises!</p>
-  <button onclick="nextPage()">Next ➡️</button>
-</section>
-
-<!-- Page 5 -->
-<section id="page5">
-  <h1>📸 Some Beautiful Memories</h1>
-  <p>Swipe through your best moments.</p>
-  <button onclick="nextPage()">Next ➡️</button>
-</section>
-
-<!-- Page 6 -->
-<section id="page6">
-  <h1>🎇 The Celebration Never Ends!</h1>
-  <p>Stay awesome, Anvi! Wishing you all the happiness.</p>
-  <button onclick="restartPages()">🎉 Start Over</button>
-</section>
-
-<script>
-  const pages = document.querySelectorAll("section");
-  let current = 0;
-
-  function nextPage() {
-    pages[current].classList.remove("active");
-    current++;
-    if (current >= pages.length) current = pages.length - 1;
-    pages[current].classList.add("active");
-  }
-
-  function restartPages() {
-    pages[current].classList.remove("active");
-    current = 0;
-    pages[current].classList.add("active");
-  }
-
-  // Music toggle
-  const music = document.getElementById("bgMusic");
-  const control = document.getElementById("music-control");
-  function toggleMusic() {
-    if (music.paused) {
-      music.play();
-      control.innerText = "🔊";
-    } else {
-      music.pause();
-      control.innerText = "🔇";
-    }
-  }
-
-  // Auto-play handling
-  window.addEventListener('click', () => {
-    if (music.paused) music.play().catch(() => {});
-  }, { once: true });
-</script>
-
+  <script>
+    // Autoplay fix for some browsers (user interaction trigger)
+    window.addEventListener('click', () => {
+      const music = document.getElementById("bgMusic");
+      if (music.paused) {
+        music.play().catch(() => {});
+      }
+    });
+  </script>
 </body>
 </html>
